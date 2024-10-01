@@ -51,6 +51,9 @@ i18n.configure({
 });
 
 
+
+
+
 app.listen(() => console.log("I'm Ready To Work..! 24H"));
 app.get('/', (req, res) => {
   res.send(`
@@ -58,13 +61,14 @@ app.get('/', (req, res) => {
   <center><h1>Bot 24H ON!</h1></center
   </body>`)
 });
+
 /**
  * Client Events
  */
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`2nn 5play`, { type: "PLAYING" });
-  let channel = client.channels.cache.find(r => r.id === "1284873254540017755");//ايدي الروم
+  client.user.setActivity(`2nn 1play`, { type: "PLAYING" });
+  let channel = client.channels.cache.find(r => r.id === "1284873134901559407");//ايدي الروم
   if(!channel)return console.log("can't find channel")
   channel.join();
 });
@@ -123,4 +127,5 @@ client.on("message", async (message) => {
     message.reply(i18n.__("common.errorCommend")).catch(console.error);
   }
 });
+
 
