@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`2nn 5play`, { type: "PLAYING" });
-  let channel = client.channels.cache.find(r => r.id === "1284873264371339307");//ايدي الروم
+  let channel = client.channels.cache.find(r => r.id === "1284873254540017755");//ايدي الروم
   if(!channel)return console.log("can't find channel")
   channel.join();
 });
