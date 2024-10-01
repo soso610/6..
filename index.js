@@ -11,7 +11,6 @@ console.log(`Your app is listening a http://localhost:${port}`)
 const { Client, Collection } = require("discord.js");
 const { readdirSync } = require("fs");
 const { join } = require("path");
-const { TOKEN, PREFIX, LOCALE } = require("./util/EvobotUtil");
 const path = require("path");
 const i18n = require("i18n"); 
 
@@ -22,7 +21,6 @@ const client = new Client({
 
 client.login(process.env.token);
 client.commands = new Collection();
-client.prefix = PREFIX;
 client.queue = new Map();
 const cooldowns = new Collection();
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -52,13 +50,21 @@ i18n.configure({
   }
 });
 
+
+app.listen(() => console.log("I'm Ready To Work..! 24H"));
+app.get('/', (req, res) => {
+  res.send(`
+  <body>
+  <center><h1>Bot 24H ON!</h1></center
+  </body>`)
+});
 /**
  * Client Events
  */
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`BlackList 1play`, { type: "PLAYING" });
-  let channel = client.channels.cache.find(r => r.id === "953360523863396377");//ايدي الروم
+  client.user.setActivity(`2nn 5play`, { type: "PLAYING" });
+  let channel = client.channels.cache.find(r => r.id === "1284873264371339307");//ايدي الروم
   if(!channel)return console.log("can't find channel")
   channel.join();
 });
@@ -68,11 +74,7 @@ client.on("error", console.error);
 /**
  * Import all commands
  */
-const commandFiles = readdirSync(join(__dirname, "commands")).filter((file) => file.endsWith(".js"));
-for (const file of commandFiles) {
-  const command = require(join(__dirname, "commands", `${file}`));
-  client.commands.set(command.name, command);
-}
+
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
@@ -121,3 +123,4 @@ client.on("message", async (message) => {
     message.reply(i18n.__("common.errorCommend")).catch(console.error);
   }
 });
+
